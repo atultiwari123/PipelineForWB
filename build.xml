@@ -103,6 +103,16 @@
       <!-- Upload the contents of the "codepkg" package, running all tests -->
       <sf:deploy username="${sf.username1}" password="${sf.password1}"  serverurl="${sf.serverurl1}" maxPoll="${sf.maxPoll}" deployRoot="codepkg" testLevel="RunLocalTests" rollbackOnError="true" logType="Debugonly"/>
     </target>
+	<!-- validation -->
+	<target name="validate" depends="proxy">
+        <sf:deploy username="${sf.username}" 
+		password="${sf.password}" 
+		serverurl="${sf.serverurl}" 
+		deployRoot="codepkg" 
+		pollWaitMillis="10000" 
+		maxPoll="5000" 
+		checkOnly="true"/>
+    </target> 
 
     <!-- Shows check only; never actually saves to the server -->
     <target name="deployCodeCheckOnly" depends="proxy">
